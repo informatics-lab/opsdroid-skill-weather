@@ -15,6 +15,6 @@ async def whatistheweather(opsdroid, message):
     location = message.regex.group(1)
     forecast = getforecast(opsdroid, location)
 
-    await message.respond("It looks like it is " +
-                          forecast.days[0].timesteps[0].weather.text +
-                          " in " + location)
+    await message.respond("It looks like it is {} in {}".format(
+                              forecast.days[0].timesteps[0].weather.text +
+                              ,location))
