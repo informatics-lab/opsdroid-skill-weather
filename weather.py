@@ -12,4 +12,4 @@ async def whatistheweather(opsdroid, message):
     site = conn.get_nearest_site(-0.124626, 51.500728)
     forecast = conn.get_forecast_for_site(site.id, "3hourly")
     current_timestep = forecast.now()
-    await message.respond("It looks like " + current_timestep.weather.text)
+    await message.respond("It looks like " + site.id)
