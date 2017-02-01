@@ -4,7 +4,7 @@ import random
 
 import datapoint
 
-def getforecast(opsdroid, config, location):
+def getforecast(opsdroid, location):
     api_key = opsdroid.config["skills"]["weather"]["api-key"]
     conn = datapoint.connection(api_key=api_key)
     site = conn.get_nearest_site(-0.124626, 51.500728)
