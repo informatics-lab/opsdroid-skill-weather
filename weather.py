@@ -1,17 +1,17 @@
-from opsdroid.skills import match_regex
+from opsdroid.matchers import match_regex
 import logging
 import random
 
 import datapoint
 
-def getforecast(opsdroid, location):
+def getforecast(opsdroid, config, location):
     api_key = opsdroid.config["skills"]["weather"]["api-key"]
     conn = datapoint.connection(api_key=api_key)
     site = conn.get_nearest_site(-0.124626, 51.500728)
     return conn.get_forecast_for_site(site.id, "3hourly")
 
 @match_regex(r'what is the weather in (.*)\?')
-async def whatistheweather(opsdroid, message):
+async def whatistheweather(opsdroid, config, message):
     location = message.regex.group(1)
     forecast = getforecast(opsdroid, location)
 
