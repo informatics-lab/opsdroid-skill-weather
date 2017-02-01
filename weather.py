@@ -2,7 +2,7 @@ from opsdroid.matchers import match_regex, match_apiai_action
 import logging
 import random
 import aiohttp
-import urllib
+from urllib import parse
 
 import datapoint
 
@@ -13,7 +13,7 @@ def getforecast(config, location):
     return conn.get_forecast_for_site(site.id, "3hourly")
 
 def weather_build_url(location):
-    return "https://shlmog4lwa.execute-api.eu-west-1.amazonaws.com/dev/datapoint?location={}".format(urllib.urlencode(location))
+    return "https://shlmog4lwa.execute-api.eu-west-1.amazonaws.com/dev/datapoint?location={}".format(parse.quote(location))
 
 @match_regex(r'what is the weather in (.*)\?')
 async def whatistheweather(opsdroid, config, message):
