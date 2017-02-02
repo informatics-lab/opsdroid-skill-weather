@@ -11,4 +11,4 @@ async def weather_in_location(opsdroid, config, message):
     async with aiohttp.ClientSession() as session:
             async with session.get(weather_build_url(location)) as resp:
                 json = await resp.json()
-                await message.respond(json["properties"]["forecast"]["text"]["regional"])
+                await message.respond(json["properties"]["forecast"]["text"]["local"])
